@@ -3,7 +3,7 @@
   require 'database.php';
   if (isset($_SESSION['user_id'])) {
     echo "HERE";
-    $records = $conn->prepare('SELECT id, email, password FROM usuarios WHERE id = :id');
+    /*$records = $conn->prepare('SELECT id, email, password FROM usuarios WHERE id = :id');
     $records->bindParam(':id', $_SESSION['user_id']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
@@ -12,7 +12,7 @@
 
     if (count($results) > 0) {
       $user = $results;
-    }
+    }*/
   }
 ?>
 <!DOCTYPE html>
@@ -37,6 +37,7 @@
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
   <section class="menu cid-s48OLK6784" once="menu" id="menu1-h">
@@ -58,22 +59,46 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-            <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="login.php">Iniciar Sesion</a></li>
-            <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="productos.php" aria-expanded="true">Productos</a>
-            </li>
+            <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="#top">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="productos.php" aria-expanded="true">Productos</a></li>
             <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="#" aria-expanded="true">Compras</a></li>
-            <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="#top">Volver al inicio</a></li>
+            <?php if(!isset($_SESSION['ID_USUARIO'])): ?>
+              <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="login.php">Iniciar Sesión</a></li>
+            <?php else: ?>
+              <li class="nav-item">
+                <a class="nav-link link text-black text-primary display-4" href="#">
+                  Bienvenido, <?= $_SESSION['NOMBRES'] ?>
+                </a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link link text-black text-primary display-4" href="#">
+                  <div class="dropdown">
+                    <button class="dropbtn">Bienvenido, <?= "juan" ?></button>
+                    <div class="dropdown-content">
+                      <a href="#"><b>Usuario:</b><br>ADMINISTRADOR</a>
+                      <a href="logout.php">Cerrar sesión</a>
+                    </div>
+                  </div>
+                </a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link link text-black text-primary display-4" href="logout.php">
+                  <img src="./assets/images/logout.png" alt="Cerrar sesión" title="Cerrar sesión"/>
+                </a>
+              </li>
+            <?php endif; ?>
           </ul>
         </div>
       </div>
     </nav>
-</section>
-
+  </section>
 <section class="header1 cid-s48MCQYojq mbr-fullscreen mbr-parallax-background" id="header1-f">
   <div class="align-center container-fluid">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-12">
-        <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1"><strong>SUPERMERCADO LAS BICHOTAS</strong></h1>
+        <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1">
+          <strong>SUPERMERCADO LAS BICHOTAS</strong>
+        </h1>
       </div>
     </div>
   </div>
@@ -127,7 +152,7 @@
 
 <section style="background-color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: flex;">
   <a href="https://mobirise.site/c" style="flex: 1 1; height: 3rem; padding-left: 1rem;"></a>
-  <p style="flex: 0 0 auto; margin:0; padding-right:1rem;">Page was <a href="https://mobirise.site/h" style="color:#aaa;">made with</a> Mobirise</p>
+  <!-- <p style="flex: 0 0 auto; margin:0; padding-right:1rem;">Page was <a href="https://mobirise.site/h" style="color:#aaa;">made with</a> Mobirise</p> -->
 </section>
 
 <script src="assets/web/assets/jquery/jquery.min.js"></script>

@@ -33,7 +33,7 @@
         
         <input type="submit" class="btn btn-primary">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-		<a href="/proyecto161" class="btn btn-success">Volver</a>
+		<a href="/proyecto161-sup" class="btn btn-success">Volver</a>
 
 
         </form>
