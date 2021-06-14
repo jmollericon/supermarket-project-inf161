@@ -20,10 +20,10 @@ try {
 function conectar(){
     $host="localhost";
     $user="root";
-    $pass="kdrew";
-    $bd="proyecto";
-    $con=mysqli_connect($host,$user,$pass);
-    mysqli_select_db($con,$bd);
+    $pass="root";#"kdrew";
+    $bd="inf161_proyecto";
+    $con=mysqli_connect($host, $user, $pass);
+    mysqli_select_db($con, $bd);
     return $con;
 }
 ?>
