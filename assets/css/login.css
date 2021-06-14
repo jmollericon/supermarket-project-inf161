@@ -76,3 +76,11 @@ box-shadow: none;
   display: block;
 	margin-top: 12px;
 }
+.division {
+  border-top: 1px solid #eee;
+  margin-top: 15px;
+}
+.volver-inicio {
+  text-decoration: none;
+  color: #2980B9;
+}

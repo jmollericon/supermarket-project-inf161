@@ -1,12 +1,9 @@
 <?php
-
   session_start();
-
   if (isset($_SESSION['user_id'])) {
     header('Location: /Proyecto161-SUP');
   }
   require 'database.php';
-
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $records = $conn->prepare('SELECT id, email, password FROM usuarios WHERE email = :email');
     $records->bindParam(':email', $_POST['email']);
@@ -22,7 +19,6 @@
       $message = 'Sorry, those credentials do not match';
     }
   }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,11 +26,10 @@
 	<meta charset="utf-8">
 	<title>Login</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
-	<?php require 'partial/header.php' ?>
+	<?php # require 'partial/header.php' ?>
 	<?php if(!empty($message)): ?>
       <p> <?= $message ?></p>
     <?php endif; ?>
@@ -51,21 +46,24 @@
       <div class="app-title">
         <h1>Login</h1>
       </div>
+      <form action="iniciar_sesion.php" method="post">
+        <div class="login-form">
+          <div class="control-group">
+          <input type="text" class="login-field" value="" placeholder="username" name="username" id="login-name" required>
+          <label class="login-field-icon fui-user" for="login-name"></label>
+          </div>
 
-      <div class="login-form">
-        <div class="control-group">
-        <input type="text" class="login-field" value="" placeholder="username" id="login-name">
-        <label class="login-field-icon fui-user" for="login-name"></label>
+          <div class="control-group">
+          <input type="password" class="login-field" value="" placeholder="password" name="password" id="login-pass" required>
+          <label class="login-field-icon fui-lock" for="login-pass"></label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-large btn-block">Login</button>
+          <!-- <a class="login-link" href="#">Lost your password?</a> -->
+          <div class="division">&nbsp;</div>
+          <a href="./" class="volver-inicio">Volver al inicio</a>
         </div>
-
-        <div class="control-group">
-        <input type="password" class="login-field" value="" placeholder="password" id="login-pass">
-        <label class="login-field-icon fui-lock" for="login-pass"></label>
-        </div>
-
-        <a class="btn btn-primary btn-large btn-block" href="#">login</a>
-        <a class="login-link" href="#">Lost your password?</a>
-      </div>
+      </form>
     </div>
   </div>
 
