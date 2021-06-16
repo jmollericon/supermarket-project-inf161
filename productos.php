@@ -162,7 +162,7 @@
                                             <th><?php  echo $row['NOMBRE_TIPO_PRODUCTO']?></th>
                                             <th><?php  echo $row['SUCURSAL_DIRECCION']?></th>
                                             <th><a href="actualizar.php?id_producto=<?php echo $row['ID_PRODUCTO'] ?>" class="btn btn-info">Editar</a></th>
-                                            <th><a href="delete.php?id_producto=<?php echo $row['ID_PRODUCTO'] ?>" class="btn btn-danger">Eliminar</a></th>                                        
+                                            <th><button onclick="eliminar_producto('<?php echo $row['ID_PRODUCTO'] ?>')" class="btn btn-danger">Eliminar</button></th>
                                         </tr>
                                     <?php
                                         }
@@ -174,5 +174,14 @@
                 </div>
             <?php endif; ?>
         </div>
+
+        <script>
+            function eliminar_producto(producto_id) {
+                const res = confirm('¿Está seguro de eliminar el producto?');
+                if(res) {
+                    window.location = './delete.php?id='+producto_id;
+                }
+            }
+        </script>
     </body>
     </html>
