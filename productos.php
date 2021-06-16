@@ -145,12 +145,12 @@
                             <table class="table">
                                 <thead class="table-success table-striped" >
                                     <tr>
-                                        <th>ID PROD</th>
+                                        <th>ID</th>
                                         <th>NOMBRE</th>
                                         <th>F. ELAB</th>
                                         <th>F. VENC</th>
-                                        <th>COMPRA</th>
-                                        <th>VENTA</th>
+                                        <th width="8%">COMPRA</th>
+                                        <th width="8%">VENTA</th>
                                         <th>CANTIDAD</th>
                                         <th>DESCRIPCION</th>
                                         <th>TIPO PROD</th>
@@ -166,15 +166,15 @@
                                         <tr>
                                             <th class="bg-warning"><?php  echo $row['ID_PRODUCTO']?></th>
                                             <th><?php  echo $row['NOMBRE_PRODUCTO']?></th>
-                                            <th><?php  echo $row['FECHA_ELABORACION']?></th>
-                                            <th><?php  echo $row['FECHA_VENCIMIENTO']?></th>
+                                            <th class="text-center"><?php echo ($row['FECHA_ELABORACION'] != "0000-00-00") ? date('d/m/Y', strtotime($row['FECHA_ELABORACION'])):'-' ?></th>
+                                            <th class="text-center"><?php echo ($row['FECHA_VENCIMIENTO'] != "0000-00-00") ? date('d/m/Y', strtotime($row['FECHA_VENCIMIENTO'])):'-' ?></th>
                                             <th><?php  echo $row['COMPRA_PRODUCTO']?> Bs.</th>
                                             <th><?php  echo $row['VENTA_PRODUCTO']?> Bs.</th>
-                                            <th><?php  echo $row['CANTIDAD_PRODUCTO']?></th>
+                                            <th class="text-center"><?php  echo $row['CANTIDAD_PRODUCTO']?></th>
                                             <th><?php  echo $row['DESCRIPCION_PRODUCTO']?></th>
                                             <th><?php  echo $row['NOMBRE_TIPO_PRODUCTO']?></th>
                                             <th><?php  echo $row['SUCURSAL_DIRECCION']?></th>
-                                            <th><a href="actualizar.php?id_producto=<?php echo $row['ID_PRODUCTO'] ?>" class="btn btn-info">Editar</a></th>
+                                            <th><a href="actualizar.php?id=<?php echo $row['ID_PRODUCTO'] ?>" class="btn btn-info">Editar</a></th>
                                             <th><button onclick="eliminar_producto('<?php echo $row['ID_PRODUCTO'] ?>')" class="btn btn-danger">Eliminar</button></th>
                                         </tr>
                                     <?php

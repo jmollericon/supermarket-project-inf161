@@ -3,16 +3,35 @@
 include("database.php");
 $con=conectar();
 
-$ci_empleado=$_POST['ci_empleado'];
-$nom_empleado=$_POST['nom_empleado'];
-$apell_empleado=$_POST['apell_empleado'];
-$telef_empleado=$_POST['telef_empleado'];
-$cargo_empleado=$_POST['cargo_empleado'];
+$ID_PRODUCTO = $_POST['ID_PRODUCTO'];
 
-$sql="UPDATE empleado SET  nom_empleado='$nom_empleado',apell_empleado='$apell_empleado', telef_empleado='$telef_empleado', cargo_empleado='$cargo_empleado' WHERE ci_empleado='$ci_empleado'";
+$NOMBRE_PRODUCTO= strtoupper($_POST['NOMBRE_PRODUCTO']);
+$FECHA_ELABORACION=$_POST['FECHA_ELABORACION'];
+$FECHA_VENCIMIENTO=$_POST['FECHA_VENCIMIENTO'];
+$COMPRA_PRODUCTO=$_POST['COMPRA_PRODUCTO'];
+$VENTA_PRODUCTO=$_POST['VENTA_PRODUCTO'];
+$CANTIDAD_PRODUCTO=$_POST['CANTIDAD_PRODUCTO'];
+$DESCRIPCION_PRODUCTO=$_POST['DESCRIPCION_PRODUCTO'];
+$ID_TIPO_PRODUCTO=$_POST['ID_TIPO_PRODUCTO'];
+$ID_SUCURSAL_PRODUCTO=$_POST['ID_SUCURSAL_PRODUCTO'];
+
+$sql="UPDATE producto
+    SET NOMBRE_PRODUCTO='$NOMBRE_PRODUCTO',
+    FECHA_ELABORACION='$FECHA_ELABORACION',
+    FECHA_VENCIMIENTO='$FECHA_VENCIMIENTO',
+    COMPRA_PRODUCTO='$COMPRA_PRODUCTO',
+    VENTA_PRODUCTO='$VENTA_PRODUCTO',
+    CANTIDAD_PRODUCTO='$CANTIDAD_PRODUCTO',
+    DESCRIPCION_PRODUCTO='$DESCRIPCION_PRODUCTO',
+    ID_TIPO_PRODUCTO='$ID_TIPO_PRODUCTO',
+    ID_SUCURSAL_PRODUCTO='$ID_SUCURSAL_PRODUCTO'
+    WHERE ID_PRODUCTO='$ID_PRODUCTO'";
 $query=mysqli_query($con,$sql);
 
     if($query){
-        Header("Location: empleado.php");
+        echo '<script language="javascript">';
+        echo "alert('Producto actualizado correctamente.');";
+        echo "window.location = './productos.php';";
+        echo "</script>";
     }
 ?>
