@@ -26,8 +26,13 @@ $query= mysqli_query($con, $sql);
 # echo "$sql<br>";
 
 if($query){
-    Header("Location: productos.php");
+    #Header("Location: productos.php");
+    echo '<script language="javascript">';
+    echo "alert('Producto registrado.');";
+    echo "window.location = './productos.php';";
+    echo "</script>";
 } else {
     echo "Error al registrar";
 }
+
 ?>
