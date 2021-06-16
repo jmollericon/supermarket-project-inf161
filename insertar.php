@@ -8,7 +8,7 @@ $con=conectar();
 // $telef_empleado=$_POST['telef_empleado'];
 // $cargo_empleado=$_POST['cargo_empleado'];
 
-$NOMBRE_PRODUCTO=$_POST['NOMBRE_PRODUCTO'];
+$NOMBRE_PRODUCTO= strtoupper($_POST['NOMBRE_PRODUCTO']);
 $FECHA_ELABORACION=$_POST['FECHA_ELABORACION'];
 $FECHA_VENCIMIENTO=$_POST['FECHA_VENCIMIENTO'];
 $COMPRA_PRODUCTO=$_POST['COMPRA_PRODUCTO'];

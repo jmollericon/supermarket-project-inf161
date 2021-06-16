@@ -15,7 +15,7 @@
             LEFT JOIN sucursal as s ON s.ID_SUCURSAL = p.ID_SUCURSAL_PRODUCTO
             ";
     $query = mysqli_query($con,$sql);
-    $row = mysqli_fetch_array($query);
+    #$row = mysqli_fetch_array($query);
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -32,18 +32,31 @@
             <?php if(!isset($_SESSION['ID_USUARIO']) || $_SESSION['ID_ROL'] == 3): ?>
                 <?php if(true): ?>
                     <div class="row mb-2">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <a href="./" class="btn btn-primary btn-sm">Volver al Inicio</a>
                         </div>
-                        <div class="col-md-6 text-right">
+                        <div class="col-md-4 text-right">
                             <?php if(!isset($_SESSION['ID_USUARIO'])): ?>
-                                <a class="btn btn-danger btn-sm" href="login.php">Iniciar Sesión</a>
+                                <a class="btn btn-danger btn-sm" href="login.php">Iniciar Sesión</a><br>
                             <?php else: ?>
                                 Bienvenido, <?= $_SESSION['NOMBRES'] ?>
                             <?php endif; ?>
                         </div>
                     </div>
-                    <div class="row">
+                    <form action="productos_buscar.php" method="GET">
+                        <div class="row">
+                            <div class="col-md-7">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" name="nombre" placeholder="Nombre del producto" required>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-success btn-block btn-sm">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    <div class="row mt-2">
                         <?php
                             while($row=mysqli_fetch_array($query)){
                         ?>
