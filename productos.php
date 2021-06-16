@@ -9,7 +9,11 @@
     $sqls = "SELECT *  FROM sucursal";
     $querys = mysqli_query($con, $sqls);
 
-    $sql = "SELECT *  FROM producto";
+    $sql = "SELECT p.*, tp.NOMBRE_TIPO_PRODUCTO, s.DIRECCION as SUCURSAL_DIRECCION
+            FROM producto as p
+            LEFT JOIN tipo_producto as tp ON tp.ID_TIPO_PRODUCTO = p.ID_TIPO_PRODUCTO
+            LEFT JOIN sucursal as s ON s.ID_SUCURSAL = p.ID_SUCURSAL_PRODUCTO
+            ";
     $query = mysqli_query($con,$sql);
     $row = mysqli_fetch_array($query);
 ?>
@@ -63,22 +67,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <tr>
-                                <th><?php  echo $row['FECHA_ELABORACION']?></th>
-                                <th><?php  echo $row['FECHA_VENCIMIENTO']?></th>
-                                <th><?php  echo $row['COMPRA_PRODUCTO']?></th>
-                                <th><?php  echo $row['']?></th>
-                                <th><?php  echo $row['ID_TIPO_PRODUCTO']?></th>
-                                <th><?php  echo $row['ID_SUCURSAL_PRODUCTO']?></th>
-                                <th><a href="actualizar.php?id_producto=<?php echo $row['ID_PRODUCTO'] ?>" class="btn btn-info">Editar</a></th>
-                                <th><a href="delete.php?id_producto=<?php echo $row['ID_PRODUCTO'] ?>" class="btn btn-danger">Eliminar</a></th>                                        
-                            </tr> -->
                         <?php
                             }
                         ?>
                     </div>
                 <?php endif; ?>
             <?php endif; ?>
+        </div>
+        <div class="contenedor-admin">
             <?php if(isset($_SESSION['ID_USUARIO']) && $_SESSION['ID_ROL'] == 1): ?>
                 <div class="row">
                     <div class="col-md-3">
@@ -131,47 +127,49 @@
                             <a href="./" class="btn btn-success">Volver</a>
                         </form>
                     </div>
-                    <div class="col-md-8">
-                        <table class="table">
-                            <thead class="table-success table-striped" >
-                                <tr>
-                                    <th>ID PROD</th>
-                                    <th>NOMBRE</th>
-                                    <th>F. ELAB</th>
-                                    <th>F. VENC</th>
-                                    <th>COMPRA</th>
-                                    <th>VENTA</th>
-                                    <th>CANTIDAD</th>
-                                    <th>DESCRIPCION</th>
-                                    <th>ID TIPO PROD</th>
-                                    <th>ID SUCURSAL</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    while($row=mysqli_fetch_array($query)){
-                                ?>
+                    <div class="col-md-9">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="table-success table-striped" >
                                     <tr>
-                                        <th class="bg-warning"><?php  echo $row['ID_PRODUCTO']?></th>
-                                        <th><?php  echo $row['NOMBRE_PRODUCTO']?></th>
-                                        <th><?php  echo $row['FECHA_ELABORACION']?></th>
-                                        <th><?php  echo $row['FECHA_VENCIMIENTO']?></th>
-                                        <th><?php  echo $row['COMPRA_PRODUCTO']?> Bs.</th>
-                                        <th><?php  echo $row['VENTA_PRODUCTO']?> Bs.</th>
-                                        <th><?php  echo $row['CANTIDAD_PRODUCTO']?></th>
-                                        <th><?php  echo $row['DESCRIPCION_PRODUCTO']?></th>
-                                        <th><?php  echo $row['ID_TIPO_PRODUCTO']?></th>
-                                        <th><?php  echo $row['ID_SUCURSAL_PRODUCTO']?></th>
-                                        <th><a href="actualizar.php?id_producto=<?php echo $row['ID_PRODUCTO'] ?>" class="btn btn-info">Editar</a></th>
-                                        <th><a href="delete.php?id_producto=<?php echo $row['ID_PRODUCTO'] ?>" class="btn btn-danger">Eliminar</a></th>                                        
+                                        <th>ID PROD</th>
+                                        <th>NOMBRE</th>
+                                        <th>F. ELAB</th>
+                                        <th>F. VENC</th>
+                                        <th>COMPRA</th>
+                                        <th>VENTA</th>
+                                        <th>CANTIDAD</th>
+                                        <th>DESCRIPCION</th>
+                                        <th>TIPO PROD</th>
+                                        <th>SUCURSAL</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
-                                <?php
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        while($row=mysqli_fetch_array($query)){
+                                    ?>
+                                        <tr>
+                                            <th class="bg-warning"><?php  echo $row['ID_PRODUCTO']?></th>
+                                            <th><?php  echo $row['NOMBRE_PRODUCTO']?></th>
+                                            <th><?php  echo $row['FECHA_ELABORACION']?></th>
+                                            <th><?php  echo $row['FECHA_VENCIMIENTO']?></th>
+                                            <th><?php  echo $row['COMPRA_PRODUCTO']?> Bs.</th>
+                                            <th><?php  echo $row['VENTA_PRODUCTO']?> Bs.</th>
+                                            <th><?php  echo $row['CANTIDAD_PRODUCTO']?></th>
+                                            <th><?php  echo $row['DESCRIPCION_PRODUCTO']?></th>
+                                            <th><?php  echo $row['NOMBRE_TIPO_PRODUCTO']?></th>
+                                            <th><?php  echo $row['SUCURSAL_DIRECCION']?></th>
+                                            <th><a href="actualizar.php?id_producto=<?php echo $row['ID_PRODUCTO'] ?>" class="btn btn-info">Editar</a></th>
+                                            <th><a href="delete.php?id_producto=<?php echo $row['ID_PRODUCTO'] ?>" class="btn btn-danger">Eliminar</a></th>                                        
+                                        </tr>
+                                    <?php
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             <?php endif; ?>

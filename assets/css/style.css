@@ -47,3 +47,6 @@
 .deshabilitado {
   cursor: not-allowed;
 }
+.contenedor-admin {
+  margin: 0 100px;
+}
