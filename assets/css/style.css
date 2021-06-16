@@ -43,3 +43,7 @@
 .nav-item img {
   width: 25px !important;
 }
+
+.deshabilitado {
+  cursor: not-allowed;
+}
